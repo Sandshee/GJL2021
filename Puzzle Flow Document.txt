@@ -1,0 +1,25 @@
+Puzzle 1 - 
+	Solution 0451 (cause of course, make joke if the player guesses it correctly, and let them past)
+	
+	Keypad blocks the way, the door closes in front of the player, as a scientist walks away.
+	Keypad says "Ask Stevenson if you've forgotten the code again"
+	4 offices, all locked.
+		Stevenson's office, shoot lock off.
+		Wait for Stevenson to return, then 
+	Enter, book of keypads
+	Code is 2340, link this back to the keypad somehow?
+	Serial number on the keypad tells you which code.
+	
+	Codes 1234 & 0451 both give humerous responses.
+	
+Puzzle 2 -
+	Option 1 -
+		Note says that the new fingerprint scanner is abysmal, way too sensitive, can be openened by an apple.
+		Player has to find half apple hidden somewhere.
+		Use apple on fingerprint scanner
+		Bypass
+		(This is too slow, and will need to be later optimised)
+		
+	Option 2 -
+	
+	
