@@ -22,7 +22,7 @@ public class Pickable : Interactible
     public override void Interact()
     {
         //Add  it to the inventory.
-        inv.addItem(item);
+        inv.AddItem(item);
         //Probably also play a pop SFX or something, idk.
         GameObject.Destroy(gameObject);
     }

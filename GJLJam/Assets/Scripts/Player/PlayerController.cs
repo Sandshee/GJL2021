@@ -79,6 +79,10 @@ public class PlayerController : MonoBehaviour
     public float slipAccel;
     public bool sliding;
 
+    [Header("Inventory")]
+    public InventoryUI inventory;
+    private bool canUseInventory;
+
     // Start is called before the first frame update
     void Awake()
     {
@@ -88,7 +92,7 @@ public class PlayerController : MonoBehaviour
 
     private void Start()
     {
-        lockMouse();
+        LockMouse();
         startingJump = transform.position;
         gravity = Physics.gravity.y;
         jumpForce = Mathf.Sqrt(jumpHeight * -2 * gravity * mass);
@@ -122,6 +126,32 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        bool cancel = Input.GetAxisRaw("Cancel") > 0;
+        //Inventory
+        if(Input.GetAxisRaw("Inventory") > 0  || cancel)
+        {
+            if (canUseInventory || cancel)
+            {
+                if (inventory.GetDisplaying())
+                {
+                    inventory.Hide();
+                    frozen = false;
+                    LockMouse();
+                }
+                else if(!cancel)
+                {
+                    inventory.Display();
+                    frozen = true;
+                    UnlockMouse();
+                }
+                canUseInventory = false;
+            }
+
+        } else
+        {
+            canUseInventory = true;
+        }
+
         UpdatePlayerMovement();
         CrouchCheck();
 
@@ -206,7 +236,7 @@ public class PlayerController : MonoBehaviour
 
     public bool GetFrozen()
     {
-        return interacting;
+        return interacting || frozen;
     }
 
     void Jump()
@@ -382,6 +412,16 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    public void Uninteract()
+    {
+        interactingWith.UnInteract();
+        interactingWith = null;
+        canInteract = false;
+        interacting = false;
+        canStopInteracting = false;
+        LockMouse();
+    }
+
     /* The interactables, buttons etc.
      * 
      * 
@@ -409,14 +449,9 @@ public class PlayerController : MonoBehaviour
 
         bool hit = Physics.Raycast(camAn.gameObject.transform.position, camAn.gameObject.transform.forward, out objectHit, interactDistance);
 
-        if(interacting && interacted && canStopInteracting)
+        if(interacting && canStopInteracting && (interacted || Input.GetAxisRaw("Cancel") > 0))
         {
-            interactingWith.UnInteract();
-            interactingWith = null;
-            canInteract = false;
-            interacting = false;
-            canStopInteracting = false;
-            lockMouse();
+            Uninteract();
         }
 
         //Update the UI to tell the player what they're looking at.
@@ -456,9 +491,12 @@ public class PlayerController : MonoBehaviour
                 inter.Interact();
                 canStopInteracting = false;
                 canInteract = false;
-                unlockMouse();
+                UnlockMouse();
             }
 
+        } else
+        {
+            hands.ResetIcon();
         }
 
 
@@ -472,12 +510,12 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    void lockMouse()
+    void LockMouse()
     {
         Cursor.lockState = CursorLockMode.Locked;
     }
 
-    void unlockMouse()
+    void UnlockMouse()
     {
         Cursor.lockState = CursorLockMode.None;
     }

@@ -21,7 +21,10 @@ public class PoweredObject : MonoBehaviour
     public void Power(float duration)
     {
         powered = true;
-        StartCoroutine(Hold(duration));
+        if (duration >= 0)
+        {
+            StartCoroutine(Hold(duration));
+        }
 
     }
 

@@ -2,8 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Touchable : MonoBehaviour
+public class Touchable : Interactible
 {
+    public PadUI pad;
+    public PadInfo info;
+    public PoweredObject power;
     // Start is called before the first frame update
     void Start()
     {
@@ -14,5 +17,15 @@ public class Touchable : MonoBehaviour
     void Update()
     {
         
+    }
+
+    public override void Interact()
+    {
+        pad.Display(info, power);
+    }
+
+    public override void UnInteract()
+    {
+        pad.Hide();
     }
 }

@@ -12,9 +12,22 @@ public class ItemUI : MonoBehaviour
     public Image icon;
     private bool wasJustOver;
     public Tooltip tooltip;
+
+    private Color clear = Color.clear;
+    private Color visible = Color.white;
     // Start is called before the first frame update
     void Start()
     {
+        if (item)
+        {
+            icon.sprite = item.icon;
+            icon.color = visible;
+            Debug.Log("But how?");
+        }
+        else
+        {
+            icon.color = clear;
+        }
         //I should only have one, its quick, dirty, but oh well.
     }
 
@@ -43,6 +56,12 @@ public class ItemUI : MonoBehaviour
 
     public void OnPointerEnter(PointerEventData eventData)
     {
+        //No point if I've no item to show.
+        if (!item)
+        {
+            return;
+        }
+
         if (!wasJustOver)
         {
             tooltip.ShowTooltip(item);
@@ -53,6 +72,12 @@ public class ItemUI : MonoBehaviour
 
     public void OnPointerExit(PointerEventData eventData)
     {
+        //No point if I've no item to show.
+        if (!item)
+        {
+            return;
+        }
+
         if (wasJustOver)
         {
             tooltip.HideTooltip(item);
@@ -64,5 +89,13 @@ public class ItemUI : MonoBehaviour
     {
         this.item = item;
         icon.sprite = item.icon;
+        icon.color = visible;
+    }
+
+    public void ClearItem()
+    {
+        this.item = null;
+        icon.sprite = null;
+        icon.color = clear;
     }
 }

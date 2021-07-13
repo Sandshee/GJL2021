@@ -27,6 +27,7 @@ public class Tooltip : MonoBehaviour
 
     public void ShowTooltip(InventoryItem item)
     {
+
         if(gameObject.activeSelf && this.item == item)
         {
             return; //No point.
