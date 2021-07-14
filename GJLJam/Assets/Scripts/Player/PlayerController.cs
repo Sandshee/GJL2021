@@ -82,6 +82,7 @@ public class PlayerController : MonoBehaviour
     [Header("Inventory")]
     public InventoryUI inventory;
     private bool canUseInventory;
+    public Pistol weaponPistol;
 
     // Start is called before the first frame update
     void Awake()
@@ -92,7 +93,7 @@ public class PlayerController : MonoBehaviour
 
     private void Start()
     {
-        LockMouse();
+        Cursor.lockState = CursorLockMode.Locked;
         startingJump = transform.position;
         gravity = Physics.gravity.y;
         jumpForce = Mathf.Sqrt(jumpHeight * -2 * gravity * mass);
@@ -135,14 +136,12 @@ public class PlayerController : MonoBehaviour
                 if (inventory.GetDisplaying())
                 {
                     inventory.Hide();
-                    frozen = false;
-                    LockMouse();
+                    UnFreeze();
                 }
                 else if(!cancel)
                 {
                     inventory.Display();
-                    frozen = true;
-                    UnlockMouse();
+                    Freeze();
                 }
                 canUseInventory = false;
             }
@@ -237,6 +236,20 @@ public class PlayerController : MonoBehaviour
     public bool GetFrozen()
     {
         return interacting || frozen;
+    }
+
+    public void Freeze()
+    {
+        weaponPistol.Holster();
+        frozen = true;
+        Cursor.lockState = CursorLockMode.None;
+    }
+
+    public void UnFreeze()
+    {
+        weaponPistol.Draw();
+        frozen = false;
+        Cursor.lockState = CursorLockMode.Locked;
     }
 
     void Jump()
@@ -419,7 +432,7 @@ public class PlayerController : MonoBehaviour
         canInteract = false;
         interacting = false;
         canStopInteracting = false;
-        LockMouse();
+        UnFreeze();
     }
 
     /* The interactables, buttons etc.
@@ -491,7 +504,7 @@ public class PlayerController : MonoBehaviour
                 inter.Interact();
                 canStopInteracting = false;
                 canInteract = false;
-                UnlockMouse();
+                Freeze();
             }
 
         } else
@@ -509,17 +522,6 @@ public class PlayerController : MonoBehaviour
             }
         }
     }
-
-    void LockMouse()
-    {
-        Cursor.lockState = CursorLockMode.Locked;
-    }
-
-    void UnlockMouse()
-    {
-        Cursor.lockState = CursorLockMode.None;
-    }
-
 
     /* The sliding code
      * 

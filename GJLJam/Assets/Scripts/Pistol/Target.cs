@@ -7,8 +7,9 @@ public class Target : MonoBehaviour
     private Camera cam;
     public float maxDistance;
     public LayerMask mask;
+    public GameObject bulletDecal;
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         cam = Camera.main;
     }
@@ -36,5 +37,22 @@ public class Target : MonoBehaviour
         }
 
         return destination;
+    }
+
+    public void BulletHole()
+    {
+        RaycastHit hitInfo;
+        if (Physics.Raycast(cam.transform.position, cam.transform.forward, out hitInfo, mask))
+        {
+            if (hitInfo.collider.CompareTag("Destructible"))
+            {
+                hitInfo.collider.GetComponent<Destructible>().Damage();
+            }
+            else
+            {
+                GameObject.Instantiate(bulletDecal, transform.position, transform.rotation);
+            }
+        }
+
     }
 }

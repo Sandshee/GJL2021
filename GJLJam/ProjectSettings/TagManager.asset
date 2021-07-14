@@ -8,6 +8,7 @@ TagManager:
   - Ladder
   - Look
   - Pickup
+  - Destructible
   layers:
   - Default
   - TransparentFX

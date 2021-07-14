@@ -11,9 +11,10 @@ GameObject:
   - component: {fileID: 1004148718521017411}
   - component: {fileID: 4197540005311474662}
   - component: {fileID: 2135936769504583468}
-  - component: {fileID: 737336154612240045}
   - component: {fileID: 5799166322141914377}
-  m_Layer: 0
+  - component: {fileID: 2049317644346963993}
+  - component: {fileID: -2122997065502991601}
+  m_Layer: 2
   m_Name: Cartridge
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -61,7 +62,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: 2b1336d66a4c07d4c8b01be09bc206b8, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -83,20 +84,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!136 &737336154612240045
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 478687079961444089}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.10944153
-  m_Height: 0.46428373
-  m_Direction: 1
-  m_Center: {x: 0.00000011920927, y: -0.0000009611247, z: 1.3012543e-20}
 --- !u!54 &5799166322141914377
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -113,3 +100,29 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &2049317644346963993
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 478687079961444089}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 059051025b4b3264ba53cafbde5e79ef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  initialForce: {x: 20, y: 10, z: 0}
+--- !u!65 &-2122997065502991601
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 478687079961444089}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.21888304, y: 0.46428373, z: 0.21888307}
+  m_Center: {x: 0.00000011920927, y: -0.0000009611247, z: 1.3012543e-20}
