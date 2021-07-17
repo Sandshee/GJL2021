@@ -6,6 +6,8 @@ public class InventoryUI : MonoBehaviour
 {
     private bool displaying = false;
     private Animator anim;
+    public InventoryItem currentItem;
+    public List<ItemUI> items = new List<ItemUI>();
     // Start is called before the first frame update
     void Start()
     {
@@ -33,5 +35,23 @@ public class InventoryUI : MonoBehaviour
     public bool GetDisplaying()
     {
         return displaying;
+    }
+
+    public void Select(ItemUI item)
+    {
+        if (item.item)
+        {
+            currentItem = item.item;
+            foreach (ItemUI i in items)
+            {
+                i.Deselect();
+            }
+            item.Select();
+        }
+    }
+
+    public InventoryItem GetItem()
+    {
+        return currentItem;
     }
 }

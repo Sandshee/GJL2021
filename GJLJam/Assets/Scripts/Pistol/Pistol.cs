@@ -16,7 +16,8 @@ public class Pistol : MonoBehaviour
     public AudioClip cartridgeClip;
     private AudioSource audioS;
 
-    public bool unholstered = true;
+    public bool unholstered = false;
+    public bool interacting = false;
     //The gun has one round in it.
     public bool hasRound = true;
 
@@ -38,6 +39,9 @@ public class Pistol : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        unholstered = Input.GetAxisRaw("Zoom") > 0 && !interacting;
+        anim.SetBool("Drawn", unholstered);
+
         transform.position = Vector3.Lerp(transform.position, pistolLoc.position, 0.2f);
         transform.rotation = Quaternion.Lerp(transform.rotation, pistolLoc.rotation, 0.1f);
 
@@ -82,13 +86,11 @@ public class Pistol : MonoBehaviour
 
     public void Draw()
     {
-        unholstered = true;
-        anim.SetBool("Drawn", true);
+        interacting = false;
     }
 
     public void Holster()
     {
-        unholstered = false;
-        anim.SetBool("Drawn", false);
+        interacting = true;
     }
 }

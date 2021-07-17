@@ -6,5 +6,5 @@ using UnityEngine;
 public class PadInfo : ScriptableObject
 {
     public string code;
-    public InventoryItem[] items;
+    public InventoryItem item;
 }

@@ -22,7 +22,7 @@ public class Tooltip : MonoBehaviour
     {
         //Vector2 localPoint;
         //RectTransformUtility.ScreenPointToLocalPointInRectangle(transform.parent.GetComponent<RectTransform>(), Input.mousePosition, uiCamera, out localPoint);
-        transform.position = Input.mousePosition;
+        //transform.position = Input.mousePosition;
     }
 
     public void ShowTooltip(InventoryItem item)
@@ -33,12 +33,12 @@ public class Tooltip : MonoBehaviour
             return; //No point.
         }
         this.item = item;
-        gameObject.SetActive(true);
+        //gameObject.SetActive(true);
 
         tooltipText.text = item.description;
-        float textPaddingSize = 4f;
-        Vector2 backGroundSize = new Vector2(tooltipText.preferredWidth + textPaddingSize * 2f, tooltipText.preferredHeight + textPaddingSize * 2f);
-        backgroundRectTransform.sizeDelta = backGroundSize;
+        //float textPaddingSize = 4f;
+        //Vector2 backGroundSize = new Vector2(tooltipText.preferredWidth + textPaddingSize * 2f, tooltipText.preferredHeight + textPaddingSize * 2f);
+        //backgroundRectTransform.sizeDelta = backGroundSize;
     }
 
     public void HideTooltip(InventoryItem item)
@@ -51,6 +51,7 @@ public class Tooltip : MonoBehaviour
 
     private void HideTooltip()
     {
-        gameObject.SetActive(false);
+        //gameObject.SetActive(false);
+        tooltipText.text = "";
     }
 }

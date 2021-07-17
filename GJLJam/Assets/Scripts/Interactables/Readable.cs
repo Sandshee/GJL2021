@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Readable : Interactible
 {
-    [TextArea]
+    [TextArea(15,20)]
     public string readableText;
     private ReaderUI playerReader;
     // Start is called before the first frame update

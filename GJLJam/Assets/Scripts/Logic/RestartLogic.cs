@@ -12,10 +12,13 @@ public class RestartLogic : MonoBehaviour
     public TextMeshProUGUI textMesh;
     public UnityEvent onRestart;
     public Animator whiteoutAnim;
+    public AudioSource audioS;
+    public int musicTimeLeft;
 
     // Start is called before the first frame update
     void Start()
     {
+        audioS = GetComponent<AudioSource>();
         actualTime = time;
         UpdateText();
     }
@@ -34,6 +37,11 @@ public class RestartLogic : MonoBehaviour
         if (actualTime <= 0)
         {
             StartRestart();
+        }
+
+        if(actualTime <= musicTimeLeft && !audioS.isPlaying)
+        {
+            audioS.Play();
         }
     }
 
@@ -62,5 +70,10 @@ public class RestartLogic : MonoBehaviour
     {
         yield return new WaitForSeconds(bonusTime);
         EndRestart();
+    }
+
+    public float GetTime()
+    {
+        return actualTime;
     }
 }

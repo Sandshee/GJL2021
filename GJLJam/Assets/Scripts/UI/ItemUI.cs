@@ -10,14 +10,19 @@ public class ItemUI : MonoBehaviour
 {
     public InventoryItem item;
     public Image icon;
+    private Image background;
+    public Color defaultCol;
+    public Color selectedCol;
     private bool wasJustOver;
     public Tooltip tooltip;
+    private bool selected;
 
     private Color clear = Color.clear;
     private Color visible = Color.white;
     // Start is called before the first frame update
     void Start()
     {
+        background = GetComponent<Image>();
         if (item)
         {
             icon.sprite = item.icon;
@@ -34,24 +39,33 @@ public class ItemUI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-       /*
-        if (EventSystem.current.IsPointerOverGameObject())
+        /*
+         if (EventSystem.current.IsPointerOverGameObject())
+         {
+             if (!wasJustOver)
+             {
+                 tooltip.ShowTooltip(item);
+                 wasJustOver = true;
+                 Debug.Log("SHOW ME THE WAY!");
+             }
+         } else
+         {
+             if (wasJustOver)
+             {
+                 tooltip.HideTooltip(item);
+                 wasJustOver = false;
+             }
+         }
+         */
+
+        if (selected)
         {
-            if (!wasJustOver)
-            {
-                tooltip.ShowTooltip(item);
-                wasJustOver = true;
-                Debug.Log("SHOW ME THE WAY!");
-            }
+            background.color = selectedCol;
+
         } else
         {
-            if (wasJustOver)
-            {
-                tooltip.HideTooltip(item);
-                wasJustOver = false;
-            }
+            background.color = defaultCol;
         }
-        */
     }
 
     public void OnPointerEnter(PointerEventData eventData)
@@ -83,6 +97,16 @@ public class ItemUI : MonoBehaviour
             tooltip.HideTooltip(item);
             wasJustOver = false;
         }
+    }
+
+    public void Select()
+    {
+        selected = true;
+    }
+
+    public void Deselect()
+    {
+        selected = false;
     }
 
     public void AssignItem(InventoryItem item)

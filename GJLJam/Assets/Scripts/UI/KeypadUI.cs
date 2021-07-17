@@ -10,6 +10,8 @@ public class KeypadUI : PadUI
     public TextMeshProUGUI textMesh;
     private PoweredObject power;
     private bool locked = false;
+    public bool cardReader = false;
+    private InventoryItem requiredItem;
     
     // Start is called before the first frame update
     void Start()
@@ -20,7 +22,14 @@ public class KeypadUI : PadUI
     // Update is called once per frame
     void Update()
     {
-        textMesh.text = attempt.PadRight(4, '_');
+        if (cardReader)
+        {
+            textMesh.text = attempt;
+        }
+        else
+        {
+            textMesh.text = attempt.PadRight(4, '_');
+        }
     }
 
     public void AddInt(int i)
@@ -42,17 +51,38 @@ public class KeypadUI : PadUI
 
     public void Enter()
     {
-        if (attempt.Equals(code))
+        if (cardReader)
         {
-            //Tell the thing.
-            power.Power(-1);
-            //Lock this, hide it, and unlock the player.
-            FindObjectOfType<PlayerController>().Uninteract();
-            this.Hide();
-        } else
+            if (requiredItem == FindObjectOfType<InventoryUI>().GetItem())
+            {
+                //Tell the thing.
+                power.Power(-1);
+                //Lock this, hide it, and unlock the player.
+                FindObjectOfType<PlayerController>().Uninteract();
+                attempt = "GRANTED";
+                this.Hide();
+            } else
+            {
+                attempt = "DENIED";
+            }
+;
+        }
+        else
         {
-            Clear();
-            //Bzzt
+            if (attempt.Equals(code))
+            {
+                //Tell the thing.
+                power.Power(-1);
+                //Lock this, hide it, and unlock the player.
+                FindObjectOfType<PlayerController>().Uninteract();
+                attempt = "";
+                this.Hide();
+            }
+            else
+            {
+                Clear();
+                //Bzzt
+            }
         }
     }
 
@@ -62,12 +92,23 @@ public class KeypadUI : PadUI
         {
             code = info.code;
             this.power = power;
+            requiredItem = info.item;
+            if (cardReader)
+            {
+                FindObjectOfType<PlayerController>().Freeze();
+                FindObjectOfType<InventoryUI>().Display();
+            }
             base.Display(info, power);
         }
     }
 
     public override void Hide()
     {
+        if (cardReader)
+        {
+            //FindObjectOfType<PlayerController>().Freeze();
+            FindObjectOfType<InventoryUI>().Hide();
+        }
         base.Hide();
     }
 }
