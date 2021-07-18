@@ -8723,6 +8723,7 @@ MonoBehaviour:
   destination: {fileID: 553444532}
   duration: 5
   locked: 0
+  endGame: 0
 --- !u!65 &137094620
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -21359,6 +21360,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   freezePlayer: 1
   item: {fileID: 11400000, guid: 1390101f3bb57c5459693bc46845e389, type: 2}
+  isPistol: 0
 --- !u!65 &345230085
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -29227,6 +29229,7 @@ MonoBehaviour:
   destination: {fileID: 1569941556}
   duration: 5
   locked: 0
+  endGame: 0
 --- !u!65 &457951552
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -32586,6 +32589,7 @@ MonoBehaviour:
   destination: {fileID: 1662089937}
   duration: 5
   locked: 0
+  endGame: 0
 --- !u!65 &507846630
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -39828,6 +39832,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   freezePlayer: 1
   item: {fileID: 11400000, guid: 369c637a929fc5e4487250f3eec306c3, type: 2}
+  isPistol: 0
 --- !u!1 &626461495
 GameObject:
   m_ObjectHideFlags: 0
@@ -44503,6 +44508,7 @@ MonoBehaviour:
   destination: {fileID: 651803893}
   duration: 5
   locked: 0
+  endGame: 0
 --- !u!65 &678316678
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -58606,6 +58612,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   freezePlayer: 1
   item: {fileID: 11400000, guid: cd714e514b537ac4e816abfc334b0f6f, type: 2}
+  isPistol: 0
 --- !u!1 &911944358
 GameObject:
   m_ObjectHideFlags: 0
@@ -84294,6 +84301,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   freezePlayer: 1
   item: {fileID: 11400000, guid: 1142b8564247f794eb30ab0c0b86000e, type: 2}
+  isPistol: 0
 --- !u!1 &1317463937
 GameObject:
   m_ObjectHideFlags: 0
@@ -93629,6 +93637,7 @@ MonoBehaviour:
   destination: {fileID: 1569941556}
   duration: 5
   locked: 0
+  endGame: 0
 --- !u!65 &1479960512
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -107137,6 +107146,7 @@ MonoBehaviour:
   destination: {fileID: 1662089937}
   duration: 5
   locked: 0
+  endGame: 0
 --- !u!65 &1689396553
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -109175,6 +109185,7 @@ MonoBehaviour:
   destination: {fileID: 651803893}
   duration: 5
   locked: 0
+  endGame: 0
 --- !u!65 &1721769545
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -130189,6 +130200,7 @@ MonoBehaviour:
   destination: {fileID: 553444532}
   duration: 5
   locked: 0
+  endGame: 0
 --- !u!65 &2065110216
 BoxCollider:
   m_ObjectHideFlags: 0

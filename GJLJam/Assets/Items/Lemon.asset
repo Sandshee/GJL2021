@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   icon: {fileID: 21300000, guid: 7b6e9cfd00a33464aa0139d60392fc20, type: 3}
   name: Lemon
-  description: Its soft and sitrus-ey. Not very nourishing.
+  description: Its soft and citrus-ey. Not very nourishing.
