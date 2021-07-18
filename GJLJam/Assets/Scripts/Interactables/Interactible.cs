@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Interactible : MonoBehaviour
 {
+    public bool freezePlayer = true;
     // Start is called before the first frame update
     void Start()
     {
@@ -29,5 +30,10 @@ public class Interactible : MonoBehaviour
     public virtual void UnInteract()
     {
         Debug.Log("For use when uninteracting with an object.");
+    }
+
+    public bool DoesFreezePlayer()
+    {
+        return freezePlayer;
     }
 }

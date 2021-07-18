@@ -243,6 +243,7 @@ public class PlayerController : MonoBehaviour
         weaponPistol.Holster();
         frozen = true;
         Cursor.lockState = CursorLockMode.None;
+        FindObjectOfType<RestartLogic>().StopTime();
     }
 
     public void UnFreeze()
@@ -250,6 +251,12 @@ public class PlayerController : MonoBehaviour
         weaponPistol.Draw();
         frozen = false;
         Cursor.lockState = CursorLockMode.Locked;
+        FindObjectOfType<RestartLogic>().StartTime();
+    }
+
+    public bool GetInteracting()
+    {
+        return interacting;
     }
 
     void Jump()
@@ -499,12 +506,18 @@ public class PlayerController : MonoBehaviour
             if (interacted && inter && canInteract)
             {
                 Debug.Log("I'm interacting!");
-                interacting = true;
-                interactingWith = inter;
                 inter.Interact();
-                canStopInteracting = false;
-                canInteract = false;
-                Freeze();
+                if (inter.DoesFreezePlayer())
+                {
+                    interacting = true;
+                    interactingWith = inter;
+                    canStopInteracting = false;
+                    canInteract = false;
+                    Freeze();
+                } else
+                {
+                    Debug.Log("No need to freeze");
+                }
             }
 
         } else

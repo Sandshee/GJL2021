@@ -7,6 +7,7 @@ public class Pickable : Interactible
 
     private Inventory inv;
     public InventoryItem item;
+    public bool isPistol = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -21,10 +22,17 @@ public class Pickable : Interactible
 
     public override void Interact()
     {
-        //Add  it to the inventory.
-        inv.AddItem(item);
-        //Probably also play a pop SFX or something, idk.
-        GameObject.Destroy(gameObject);
+        if (!isPistol)
+        {
+            //Add  it to the inventory.
+            inv.AddItem(item);
+            //Probably also play a pop SFX or something, idk.
+            GameObject.Destroy(gameObject);
+        } else
+        {
+            FindObjectOfType<Pistol>().Draw();
+            GameObject.Destroy(gameObject);
+        }
     }
 
     //This shouldn't be doable, but nevermind.

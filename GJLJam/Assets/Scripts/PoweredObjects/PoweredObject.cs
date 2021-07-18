@@ -6,6 +6,7 @@ public class PoweredObject : MonoBehaviour
 {
     private int coroutineCount;
     public bool powered = false;
+    public bool invert = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -27,7 +28,6 @@ public class PoweredObject : MonoBehaviour
         }
 
     }
-
     IEnumerator Hold(float duration)
     {
         coroutineCount++;
@@ -43,6 +43,13 @@ public class PoweredObject : MonoBehaviour
 
     public bool GetPowered()
     {
-        return powered;
+        if (invert)
+        {
+            return !powered;
+        }
+        else
+        {
+            return powered;
+        }
     }
 }

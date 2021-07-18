@@ -7,6 +7,7 @@ public class Button3D : Interactible
     public PoweredObject destination;
     public float duration = 2f;
     public bool locked = false;
+    public bool endGame = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -19,12 +20,23 @@ public class Button3D : Interactible
         
     }
 
-    public override void Activate()
+    public override void Interact()
     {
         Debug.Log("Boop!");
         if (!locked)
         {
-            destination.Power(duration);
+            if (endGame)
+            {
+                Debug.Log("End Game");
+                FindObjectOfType<SceneLoader>().LoadNextScene(true);
+                FindObjectOfType<Sun>().Implode();
+                FindObjectOfType<RestartLogic>().StopTime();
+            }
+            else
+            {
+                destination.Power(duration);
+            }
+            //FindObjectOfType<PlayerController>().Uninteract();
             //Play unlocked animation.
         } else
         {

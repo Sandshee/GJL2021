@@ -11,6 +11,9 @@ public class Sun : MonoBehaviour
     private float initialMinFalloff;
     private float initialMaxFalloff;
     private AudioSource audioS;
+    private bool imploding = false;
+    private float implodeStartScale;
+    private float implodeTime;
     // Start is called before the first frame update
     void Start()
     {
@@ -23,12 +26,38 @@ public class Sun : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (logic.GetTime() <= thresholdTime)
+        if (imploding)
         {
-            float t = 1 - (logic.GetTime() / thresholdTime);
-            transform.localScale = Vector3.one * Mathf.LerpUnclamped(startScale, endScale, t);
-            audioS.minDistance = Mathf.LerpUnclamped(startScale, endScale, t); ;
-            audioS.maxDistance = initialMaxFalloff + Mathf.LerpUnclamped(startScale, endScale, t); ;
+            implodeTime -= Time.deltaTime;
+            float t = implodeTime / 4f;
+            transform.localScale = Vector3.one * Mathf.Lerp(0, implodeStartScale, t);
+            audioS.volume = t;
         }
+        else
+        {
+            if (logic.GetTime() <= thresholdTime)
+            {
+                float t = 1 - (logic.GetTime() / thresholdTime);
+                transform.localScale = Vector3.one * Mathf.LerpUnclamped(startScale, endScale, t);
+                audioS.minDistance = Mathf.LerpUnclamped(startScale, endScale, t); ;
+                audioS.maxDistance = initialMaxFalloff + Mathf.LerpUnclamped(startScale, endScale, t); ;
+            }
+        }
+    }
+
+    //Get burned by the reactor.
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            FindObjectOfType<RestartLogic>().StartRestart();
+        }
+    }
+
+    public void Implode()
+    {
+        implodeStartScale = transform.localScale.x;
+        imploding = true;
+        implodeTime = 4f;
     }
 }

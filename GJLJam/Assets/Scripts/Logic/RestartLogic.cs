@@ -14,6 +14,7 @@ public class RestartLogic : MonoBehaviour
     public Animator whiteoutAnim;
     public AudioSource audioS;
     public int musicTimeLeft;
+    private bool frozenTime;
 
     // Start is called before the first frame update
     void Start()
@@ -26,7 +27,10 @@ public class RestartLogic : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        actualTime -= Time.deltaTime;
+        if (!frozenTime)
+        {
+            actualTime -= Time.deltaTime;
+        }
         if (actualTime >= 0)
         {
             time = Mathf.FloorToInt(actualTime);
@@ -75,5 +79,20 @@ public class RestartLogic : MonoBehaviour
     public float GetTime()
     {
         return actualTime;
+    }
+
+    public void StopTime()
+    {
+        frozenTime = true;
+    }
+
+    public void StartTime()
+    {
+        frozenTime = false;
+    }
+
+    public void SetTime(float time)
+    {
+        actualTime = time;
     }
 }
