@@ -12,6 +12,11 @@ public class Pickable : Interactible
     void Start()
     {
         inv = FindObjectOfType<Inventory>();
+
+        if(isPistol && BetweenLoopData.GetGunsPickedUp() >= FindObjectOfType<Pistol>().gunPickupThreshold)
+        {
+            GameObject.Destroy(this.gameObject);
+        }
     }
 
     // Update is called once per frame
@@ -30,7 +35,9 @@ public class Pickable : Interactible
             GameObject.Destroy(gameObject);
         } else
         {
+            BetweenLoopData.PickUpGun();
             FindObjectOfType<Pistol>().Draw();
+            FindObjectOfType<Pistol>().PlayPickupSFX();
             GameObject.Destroy(gameObject);
         }
     }

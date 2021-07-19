@@ -7,10 +7,16 @@ public class PoweredObject : MonoBehaviour
     private int coroutineCount;
     public bool powered = false;
     public bool invert = false;
+    public int doorIndex = -1;
+    public int threshHoldOpens;
+    private bool poweredThisLoop = false;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        if (BetweenLoopData.GetDoorsOpened(doorIndex) >= threshHoldOpens && BetweenLoopData.GetDoorsOpened(doorIndex) > 0) {
+            powered = true;
+        }
     }
 
     // Update is called once per frame
@@ -21,6 +27,12 @@ public class PoweredObject : MonoBehaviour
 
     public void Power(float duration)
     {
+        if (!poweredThisLoop)
+        {
+            BetweenLoopData.OpenDoor(doorIndex);
+            poweredThisLoop = true;
+        }
+
         powered = true;
         if (duration >= 0)
         {

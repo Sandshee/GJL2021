@@ -769,24 +769,27 @@ MonoBehaviour:
 
     Alex somehow prevented a
     reactor meltdown at 22:00. Nobody is quite sure how it happened, least of all
-    Alex, something about "get well soon cards?". They''ve been detained for unliscened
-    possession of a firearm, though we''re not sure how they even got it on the station.
+    Alex, something about "get well soon cards?". Logs Show Alex was in their offices
+    as the reactor began going nuclear, then all the doors to the reactor opened
+    within milliseconds of one another, then the reactor was shut-down. Alex has
+    been detained for unliscened possession of a firearm, though we''re not sure
+    how they even got it on the station.
 
-    The
-    reactor had been overcharged with Hydrogen-4 samples collected from Ceres, the
-    temporal anomalies caused by the samples may be to blame for Alex''s behaviour.
-    However, given they did save all our lives, i think we might be able to overlook
-    the firearm possession.
+    The reactor had been overcharged with
+    Hydrogen-4 samples collected from Ceres, the temporal anomalies caused by the
+    samples may be to blame for Alex''s behaviour. However, given they did save all
+    our lives, i think we might be able to overlook the firearm possession.
 
-    Various logs confirm that Chief Engineer Derek Suarez
-    was responsible for the near reactor meltdown, he proceeded with an experiment
-    on the application of Hydrogen-4 for Nuclear Fusion. Boris has confirmed he will
-    be spending his time under surveilance until the next ship appears.
+    Various
+    logs confirm that Chief Engineer Derek Suarez was responsible for the near reactor
+    meltdown, he proceeded with an experiment on the application of Hydrogen-4 for
+    Nuclear Fusion. Boris has confirmed he will be spending his time under surveilance
+    until the next ship appears.
 
-    This
-    has been a bizarre 48 hours.
+    This has been a bizarre 48 hours.
 
-    - Chief Scientist, Gob.'
+    - Chief
+    Scientist, Gob.'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: bd068fc2a70948947b7bf1a99726b108, type: 2}
   m_sharedMaterial: {fileID: -514892320509610814, guid: bd068fc2a70948947b7bf1a99726b108,

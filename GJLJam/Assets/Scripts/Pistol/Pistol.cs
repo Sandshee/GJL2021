@@ -22,18 +22,27 @@ public class Pistol : MonoBehaviour
     public bool hasRound = true;
 
     private bool triggerHeld = false;
+    public int gunPickupThreshold = 7;
+    public AudioClip gunPickup;
     // Start is called before the first frame update
     void Awake()
     {
         anim = GetComponent<Animator>();
         audioS = GetComponent<AudioSource>();
-        if (unholstered)
+        if (BetweenLoopData.GetGunsPickedUp() >= gunPickupThreshold)
         {
             Draw();
+            anim.SetBool("Drawn", true);
+            PlayPickupSFX();
         } else
         {
             Holster();
         }
+    }
+
+    public void PlayPickupSFX()
+    {
+        audioS.PlayOneShot(gunPickup);
     }
 
     // Update is called once per frame

@@ -658,17 +658,6 @@
         },
         {
             "managedAssemblyName": "UnityEngine.dll",
-            "nativeClass": "LightProbes",
-            "fullManagedTypeName": "UnityEngine.LightProbes",
-            "moduleName": "Core",
-            "usedInScenes": [
-                "Assets/Scenes/MainMenu.unity",
-                "Assets/Scenes/TutorialScene.unity",
-                "Assets/Scenes/TestingScene.unity"
-            ]
-        },
-        {
-            "managedAssemblyName": "UnityEngine.dll",
             "nativeClass": "Cubemap",
             "fullManagedTypeName": "UnityEngine.Cubemap",
             "moduleName": "Core",
